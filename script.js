@@ -10,161 +10,276 @@ const CATEGORIES = [
   { key: "social", name: "사회·공공서비스", icon: "🤝" },
 ];
 
+// aiImpact.level: "low" | "medium" | "high" — how much AI is expected to reshape the role
 const CAREERS = [
   // IT·개발
   { id: "sw-dev", name: "소프트웨어 개발자", category: "it", icon: "💻",
     desc: "웹, 앱, 프로그램 등을 설계하고 코드를 작성해 서비스를 만드는 일을 해요.",
     skills: ["논리적 사고", "문제 해결력", "협업 능력"],
     subjects: ["수학", "정보"], majors: ["컴퓨터공학과", "소프트웨어학과"],
-    salary: "평균 4,500만원", outlook: "전망 매우 밝음" },
+    salary: "평균 4,500만원", outlook: "전망 매우 밝음",
+    aiImpact: { level: "medium", text: "AI가 코드 작성을 도와주면서 개발 속도는 빨라지지만, 요구사항을 이해하고 AI가 만든 코드를 검증·설계하는 역량이 더 중요해져요." } },
   { id: "data-analyst", name: "데이터 분석가", category: "it", icon: "📊",
     desc: "데이터를 수집하고 분석해 문제 해결과 의사 결정에 필요한 인사이트를 찾아내요.",
     skills: ["통계", "논리적 사고", "커뮤니케이션"],
     subjects: ["수학", "정보"], majors: ["통계학과", "데이터사이언스학과"],
-    salary: "평균 4,800만원", outlook: "전망 매우 밝음" },
+    salary: "평균 4,800만원", outlook: "전망 매우 밝음",
+    aiImpact: { level: "medium", text: "AI가 데이터 정리와 기초 분석을 자동화해주지만, 결과를 해석하고 의사결정에 연결하는 역할은 여전히 사람의 몫이에요." } },
   { id: "ai-engineer", name: "인공지능(AI) 엔지니어", category: "it", icon: "🤖",
     desc: "인공지능 모델을 설계, 학습시켜 다양한 문제를 자동으로 해결하도록 만들어요.",
     skills: ["수학", "프로그래밍", "탐구심"],
     subjects: ["수학", "정보", "과학"], majors: ["인공지능학과", "컴퓨터공학과"],
-    salary: "평균 5,200만원", outlook: "전망 매우 밝음" },
+    salary: "평균 5,200만원", outlook: "전망 매우 밝음",
+    aiImpact: { level: "low", text: "AI 기술 자체를 만들고 발전시키는 직업이라 오히려 수요가 계속 커지고 있어요." } },
   { id: "game-planner", name: "게임 기획자", category: "it", icon: "🎮",
     desc: "게임의 세계관, 규칙, 콘텐츠를 기획하고 개발팀과 협업해 게임을 완성해요.",
     skills: ["창의력", "기획력", "협업 능력"],
     subjects: ["정보", "국어"], majors: ["게임학과", "콘텐츠학과"],
-    salary: "평균 4,000만원", outlook: "전망 밝음" },
+    salary: "평균 4,000만원", outlook: "전망 밝음",
+    aiImpact: { level: "medium", text: "AI가 그래픽이나 대사 초안 제작을 도와주지만, 재미있는 규칙과 세계관을 구상하는 창의적 기획력은 대체하기 어려워요." } },
+  { id: "security-specialist", name: "정보보안 전문가", category: "it", icon: "🔐",
+    desc: "해킹과 사이버 공격으로부터 시스템과 데이터를 보호하는 보안 전문가예요.",
+    skills: ["분석력", "논리적 사고", "꼼꼼함"],
+    subjects: ["정보", "수학"], majors: ["정보보안학과", "컴퓨터공학과"],
+    salary: "평균 4,700만원", outlook: "전망 매우 밝음",
+    aiImpact: { level: "low", text: "AI를 활용한 해킹이 늘면서 이를 막아낼 보안 전문가의 역할이 오히려 더 중요해지고 있어요." } },
+  { id: "cloud-engineer", name: "클라우드 엔지니어", category: "it", icon: "☁️",
+    desc: "서버와 데이터를 클라우드 환경에서 안정적으로 운영하고 관리하는 일을 해요.",
+    skills: ["문제 해결력", "논리적 사고", "협업 능력"],
+    subjects: ["정보", "수학"], majors: ["컴퓨터공학과", "소프트웨어학과"],
+    salary: "평균 4,900만원", outlook: "전망 매우 밝음",
+    aiImpact: { level: "low", text: "AI 서비스가 늘어날수록 이를 안정적으로 운영할 클라우드 인프라 수요도 함께 커지고 있어요." } },
 
   // 의료·보건
   { id: "doctor", name: "의사", category: "medical", icon: "🩻",
     desc: "환자를 진찰하고 진단하여 치료 계획을 세우고 건강을 회복하도록 도와요.",
     skills: ["공감 능력", "책임감", "집중력"],
     subjects: ["생명과학", "화학"], majors: ["의예과", "의학과"],
-    salary: "평균 8,000만원 이상", outlook: "전망 매우 밝음" },
+    salary: "평균 8,000만원 이상", outlook: "전망 매우 밝음",
+    aiImpact: { level: "low", text: "AI가 진단을 보조하는 도구로 활용되지만, 최종 판단과 환자와의 신뢰 관계 형성은 의사 고유의 영역으로 남아있어요." } },
   { id: "nurse", name: "간호사", category: "medical", icon: "💉",
     desc: "환자를 가까이에서 돌보고 치료 과정을 지원하며 건강 관리를 도와요.",
     skills: ["공감 능력", "꼼꼼함", "체력"],
     subjects: ["생명과학", "보건"], majors: ["간호학과"],
-    salary: "평균 4,200만원", outlook: "전망 매우 밝음" },
+    salary: "평균 4,200만원", outlook: "전망 매우 밝음",
+    aiImpact: { level: "low", text: "AI가 기록과 모니터링을 도와줄 수 있지만, 환자를 직접 돌보고 공감하는 역할은 대체하기 어려워요." } },
   { id: "physical-therapist", name: "물리치료사", category: "medical", icon: "🦵",
     desc: "운동이나 재활 치료를 통해 환자의 신체 기능 회복을 돕는 전문가예요.",
     skills: ["공감 능력", "체력", "꼼꼼함"],
     subjects: ["생명과학", "체육"], majors: ["물리치료학과"],
-    salary: "평균 3,600만원", outlook: "전망 밝음" },
+    salary: "평균 3,600만원", outlook: "전망 밝음",
+    aiImpact: { level: "low", text: "AI가 재활 데이터를 분석해줄 수 있지만, 직접 몸을 다루고 맞춤 치료하는 과정은 사람이 필요해요." } },
   { id: "clinical-lab", name: "임상병리사", category: "medical", icon: "🧪",
     desc: "혈액, 조직 등을 검사해 질병 진단에 필요한 정보를 제공하는 일을 해요.",
     skills: ["꼼꼼함", "탐구심", "집중력"],
     subjects: ["화학", "생명과학"], majors: ["임상병리학과"],
-    salary: "평균 3,800만원", outlook: "전망 밝음" },
+    salary: "평균 3,800만원", outlook: "전망 밝음",
+    aiImpact: { level: "medium", text: "AI가 검사 결과 분석 속도를 높여주지만, 정확한 검체 관리와 이상 소견 판단은 여전히 전문가의 역할이에요." } },
+  { id: "pharmacist", name: "약사", category: "medical", icon: "💊",
+    desc: "약을 조제하고 올바른 복용법을 안내해 환자의 건강을 지켜주는 전문가예요.",
+    skills: ["꼼꼼함", "책임감", "소통 능력"],
+    subjects: ["화학", "생명과학"], majors: ["약학과"],
+    salary: "평균 6,000만원", outlook: "전망 밝음",
+    aiImpact: { level: "medium", text: "AI가 약물 상호작용 확인을 도와주지만, 환자 상태에 맞는 복약 지도는 사람이 직접 해야 해요." } },
+  { id: "veterinarian", name: "수의사", category: "medical", icon: "🐾",
+    desc: "아픈 동물을 진찰하고 치료하며 동물의 건강과 생명을 돌보는 일을 해요.",
+    skills: ["공감 능력", "책임감", "체력"],
+    subjects: ["생명과학", "화학"], majors: ["수의예과", "수의학과"],
+    salary: "평균 5,500만원", outlook: "전망 밝음",
+    aiImpact: { level: "low", text: "AI가 진단 보조 도구로 쓰일 수 있지만, 동물을 직접 다루고 치료하는 일은 여전히 사람의 손이 필요해요." } },
 
   // 예술·디자인
   { id: "graphic-designer", name: "그래픽 디자이너", category: "art", icon: "🖌️",
     desc: "브랜드, 광고, 편집물 등 다양한 매체의 시각 디자인을 기획하고 제작해요.",
     skills: ["창의력", "감각", "소프트웨어 활용"],
     subjects: ["미술", "정보"], majors: ["시각디자인학과"],
-    salary: "평균 3,500만원", outlook: "전망 유지" },
+    salary: "평균 3,500만원", outlook: "전망 유지",
+    aiImpact: { level: "medium", text: "AI 이미지 생성 도구가 빠르게 시안을 만들어주면서, 사람은 방향을 설정하고 완성도를 다듬는 역할에 집중하게 돼요." } },
   { id: "webtoon-artist", name: "웹툰 작가", category: "art", icon: "✏️",
     desc: "이야기를 구상하고 그림으로 표현해 온라인 만화 콘텐츠를 연재해요.",
     skills: ["창의력", "스토리텔링", "성실함"],
     subjects: ["미술", "국어"], majors: ["웹툰학과", "만화애니메이션학과"],
-    salary: "평균 3,000만원(편차 큼)", outlook: "전망 밝음" },
+    salary: "평균 3,000만원(편차 큼)", outlook: "전망 밝음",
+    aiImpact: { level: "medium", text: "AI가 배경이나 채색 같은 반복 작업을 도와줄 수 있지만, 독창적인 스토리와 캐릭터를 만드는 힘은 작가에게 있어요." } },
   { id: "video-creator", name: "영상 콘텐츠 크리에이터", category: "art", icon: "🎬",
     desc: "기획부터 촬영, 편집까지 직접 콘텐츠를 만들어 온라인에 공유해요.",
     skills: ["창의력", "기획력", "편집 기술"],
     subjects: ["정보", "미술"], majors: ["영상학과", "미디어콘텐츠학과"],
-    salary: "평균 3,200만원(편차 큼)", outlook: "전망 밝음" },
+    salary: "평균 3,200만원(편차 큼)", outlook: "전망 밝음",
+    aiImpact: { level: "medium", text: "AI 편집 도구가 작업 시간을 줄여주지만, 기획력과 개성 있는 시점은 여전히 크리에이터의 강점이에요." } },
   { id: "architect", name: "건축가", category: "art", icon: "🏛️",
     desc: "건물과 공간을 설계하여 안전하고 아름다운 구조물을 만들어내요.",
     skills: ["공간 감각", "창의력", "수학"],
     subjects: ["미술", "수학"], majors: ["건축학과"],
-    salary: "평균 4,300만원", outlook: "전망 유지" },
+    salary: "평균 4,300만원", outlook: "전망 유지",
+    aiImpact: { level: "low", text: "AI가 도면 작업을 보조할 수 있지만, 공간과 사람의 삶을 함께 고려한 설계는 건축가의 전문 영역이에요." } },
+  { id: "ux-ui-designer", name: "UX/UI 디자이너", category: "art", icon: "📱",
+    desc: "앱과 웹사이트를 사용자가 편리하고 즐겁게 이용할 수 있도록 화면을 설계해요.",
+    skills: ["창의력", "공감 능력", "소프트웨어 활용"],
+    subjects: ["미술", "정보"], majors: ["산업디자인학과", "UX디자인학과"],
+    salary: "평균 4,100만원", outlook: "전망 매우 밝음",
+    aiImpact: { level: "medium", text: "AI가 화면 시안을 빠르게 제안해주지만, 실제 사용자의 마음을 이해하고 다듬는 감각은 사람만이 할 수 있어요." } },
+  { id: "music-producer", name: "음악 프로듀서", category: "art", icon: "🎵",
+    desc: "음악을 기획, 작곡, 편곡하고 앨범 제작 전 과정을 총괄하는 일을 해요.",
+    skills: ["창의력", "음악적 감각", "기획력"],
+    subjects: ["음악", "정보"], majors: ["실용음악과", "음악학과"],
+    salary: "평균 3,700만원(편차 큼)", outlook: "전망 유지",
+    aiImpact: { level: "medium", text: "AI 작곡 도구가 아이디어 스케치를 도와줄 수 있지만, 감성을 담은 완성도 높은 곡을 만드는 건 사람의 몫이에요." } },
 
   // 교육
   { id: "elementary-teacher", name: "초등학교 교사", category: "edu", icon: "🍎",
     desc: "어린이들의 전 과목 학습과 인성 발달을 지도하고 이끌어주는 일을 해요.",
     skills: ["소통 능력", "인내심", "기획력"],
     subjects: ["전 과목"], majors: ["초등교육과"],
-    salary: "평균 4,000만원", outlook: "전망 유지" },
+    salary: "평균 4,000만원", outlook: "전망 유지",
+    aiImpact: { level: "low", text: "AI가 학습 자료 준비를 도와줄 수 있지만, 어린이와 정서적으로 교감하며 인성을 지도하는 역할은 대체할 수 없어요." } },
   { id: "science-teacher", name: "중등교사(과학)", category: "edu", icon: "🧫",
     desc: "청소년에게 과학 지식을 가르치고 탐구 활동을 지도하는 교육 전문가예요.",
     skills: ["전달력", "탐구심", "인내심"],
     subjects: ["과학", "국어"], majors: ["과학교육과"],
-    salary: "평균 4,100만원", outlook: "전망 유지" },
+    salary: "평균 4,100만원", outlook: "전망 유지",
+    aiImpact: { level: "medium", text: "AI가 맞춤형 문제와 자료 제공을 도와주지만, 학생의 이해도를 살피고 동기를 부여하는 건 교사의 역할이에요." } },
   { id: "edu-content-developer", name: "교육 콘텐츠 개발자", category: "edu", icon: "📖",
     desc: "교재, 온라인 강의, 학습 프로그램 등 교육 콘텐츠를 기획하고 제작해요.",
     skills: ["기획력", "전달력", "창의력"],
     subjects: ["국어", "정보"], majors: ["교육공학과"],
-    salary: "평균 3,800만원", outlook: "전망 밝음" },
+    salary: "평균 3,800만원", outlook: "전망 밝음",
+    aiImpact: { level: "medium", text: "AI가 콘텐츠 초안 제작을 도와주지만, 학습 목표에 맞게 기획하고 검수하는 역량이 더 중요해져요." } },
   { id: "career-counselor", name: "진로상담사", category: "edu", icon: "🧭",
     desc: "학생들이 자신의 적성과 진로를 찾을 수 있도록 상담하고 안내해줘요.",
     skills: ["공감 능력", "소통 능력", "분석력"],
     subjects: ["사회", "국어"], majors: ["교육학과", "상담심리학과"],
-    salary: "평균 3,600만원", outlook: "전망 밝음" },
+    salary: "평균 3,600만원", outlook: "전망 밝음",
+    aiImpact: { level: "low", text: "AI가 진로 정보 제공은 도와줄 수 있지만, 학생 개개인의 고민에 공감하며 상담하는 일은 사람이 해야 해요." } },
+  { id: "special-ed-teacher", name: "특수교사", category: "edu", icon: "🧩",
+    desc: "장애가 있는 학생들이 저마다의 속도로 배울 수 있도록 맞춤 지도하는 교사예요.",
+    skills: ["공감 능력", "인내심", "전달력"],
+    subjects: ["전 과목"], majors: ["특수교육과"],
+    salary: "평균 4,000만원", outlook: "전망 밝음",
+    aiImpact: { level: "low", text: "학생마다 다른 필요를 세심하게 살피고 정서적으로 지지하는 역할은 AI가 대체하기 어려워요." } },
+  { id: "early-childhood-teacher", name: "유아교육 교사", category: "edu", icon: "🧸",
+    desc: "유치원이나 어린이집에서 어린이의 발달과 놀이 학습을 지도하는 교사예요.",
+    skills: ["인내심", "소통 능력", "창의력"],
+    subjects: ["국어", "음악·미술"], majors: ["유아교육과"],
+    salary: "평균 3,300만원", outlook: "전망 유지",
+    aiImpact: { level: "low", text: "어린 아이들을 직접 돌보고 놀이로 배움을 이끄는 역할은 사람만이 할 수 있어요." } },
 
   // 경영·비즈니스
   { id: "marketer", name: "마케팅 전문가", category: "business", icon: "📣",
     desc: "제품과 서비스를 알리기 위한 전략을 세우고 캠페인을 기획, 운영해요.",
     skills: ["창의력", "분석력", "소통 능력"],
     subjects: ["사회", "정보"], majors: ["경영학과", "마케팅학과"],
-    salary: "평균 4,200만원", outlook: "전망 밝음" },
+    salary: "평균 4,200만원", outlook: "전망 밝음",
+    aiImpact: { level: "medium", text: "AI가 데이터 분석과 카피 초안 작성을 도와주지만, 브랜드 전략을 세우고 트렌드를 읽는 감각은 여전히 중요해요." } },
   { id: "startup-founder", name: "창업가(스타트업 CEO)", category: "business", icon: "🚀",
     desc: "새로운 아이디어로 사업을 시작하고 팀을 이끌어 성장시키는 일을 해요.",
     skills: ["리더십", "도전 정신", "문제 해결력"],
     subjects: ["사회", "정보"], majors: ["경영학과", "산업공학과"],
-    salary: "수익에 따라 다름", outlook: "전망 변동" },
+    salary: "수익에 따라 다름", outlook: "전망 변동",
+    aiImpact: { level: "low", text: "AI 도구를 활용해 업무 효율을 높일 수 있지만, 사업 방향을 결정하고 사람들을 이끄는 리더십은 대체할 수 없어요." } },
   { id: "accountant", name: "회계사", category: "business", icon: "🧾",
     desc: "기업의 재무 정보를 기록, 분석하고 회계 감사를 수행하는 전문가예요.",
     skills: ["꼼꼼함", "분석력", "신뢰성"],
     subjects: ["수학", "사회"], majors: ["회계학과", "경영학과"],
-    salary: "평균 5,000만원", outlook: "전망 유지" },
+    salary: "평균 5,000만원", outlook: "전망 유지",
+    aiImpact: { level: "high", text: "AI가 반복적인 장부 정리와 계산 업무를 빠르게 처리하면서, 회계사의 역할은 데이터 해석과 자문 쪽으로 무게 중심이 옮겨가고 있어요." } },
   { id: "financial-analyst", name: "금융 애널리스트", category: "business", icon: "📈",
     desc: "시장과 기업 데이터를 분석해 투자 및 금융 전략을 제안하는 일을 해요.",
     skills: ["분석력", "수학", "판단력"],
     subjects: ["수학", "사회"], majors: ["경제학과", "금융학과"],
-    salary: "평균 5,500만원", outlook: "전망 밝음" },
+    salary: "평균 5,500만원", outlook: "전망 밝음",
+    aiImpact: { level: "medium", text: "AI가 방대한 시장 데이터를 빠르게 분석해주지만, 최종 투자 판단과 리스크 조율은 여전히 사람의 몫이에요." } },
+  { id: "hr-manager", name: "인사(HR) 담당자", category: "business", icon: "🧑‍💼",
+    desc: "회사에 필요한 인재를 채용하고 직원 교육, 조직 문화를 관리하는 일을 해요.",
+    skills: ["소통 능력", "판단력", "공감 능력"],
+    subjects: ["사회", "국어"], majors: ["경영학과", "심리학과"],
+    salary: "평균 4,300만원", outlook: "전망 유지",
+    aiImpact: { level: "medium", text: "AI가 서류 심사 같은 반복 업무를 도와주지만, 사람을 이해하고 조직 문화를 만드는 일은 사람이 해야 해요." } },
+  { id: "logistics-manager", name: "물류관리자", category: "business", icon: "📦",
+    desc: "상품이 생산지에서 소비자까지 효율적으로 이동하도록 유통 과정을 관리해요.",
+    skills: ["기획력", "분석력", "문제 해결력"],
+    subjects: ["수학", "사회"], majors: ["물류학과", "경영학과"],
+    salary: "평균 4,200만원", outlook: "전망 밝음",
+    aiImpact: { level: "medium", text: "AI가 최적 경로와 재고 예측을 도와주지만, 돌발 상황 대응과 전체 흐름 조율은 사람의 판단이 필요해요." } },
 
   // 과학·연구
   { id: "bio-researcher", name: "생명공학 연구원", category: "science", icon: "🧬",
     desc: "생명 현상을 연구하여 의약품, 식품, 환경 문제 해결에 활용해요.",
     skills: ["탐구심", "꼼꼼함", "논리적 사고"],
     subjects: ["생명과학", "화학"], majors: ["생명공학과"],
-    salary: "평균 4,300만원", outlook: "전망 밝음" },
+    salary: "평균 4,300만원", outlook: "전망 밝음",
+    aiImpact: { level: "low", text: "AI가 방대한 실험 데이터 분석을 도와주면서 오히려 새로운 발견의 속도가 빨라지고 있어요." } },
   { id: "environmental-engineer", name: "환경공학자", category: "science", icon: "🌱",
     desc: "환경 오염을 분석하고 해결책을 연구해 지속 가능한 환경을 만들어요.",
     skills: ["탐구심", "분석력", "책임감"],
     subjects: ["화학", "지구과학"], majors: ["환경공학과"],
-    salary: "평균 4,000만원", outlook: "전망 밝음" },
+    salary: "평균 4,000만원", outlook: "전망 밝음",
+    aiImpact: { level: "low", text: "AI가 환경 데이터 예측을 도와주지만, 현장에 맞는 해결책을 설계하는 일은 사람의 전문성이 필요해요." } },
   { id: "aerospace-researcher", name: "우주항공 연구원", category: "science", icon: "🚀",
     desc: "로켓, 위성, 항공기 등을 연구하고 개발하는 첨단 과학기술 분야예요.",
     skills: ["수학", "탐구심", "끈기"],
     subjects: ["물리학", "수학"], majors: ["항공우주공학과"],
-    salary: "평균 4,600만원", outlook: "전망 밝음" },
+    salary: "평균 4,600만원", outlook: "전망 밝음",
+    aiImpact: { level: "low", text: "AI가 설계와 시뮬레이션을 도와주지만, 새로운 아이디어를 실현하는 연구는 여전히 사람이 이끌어요." } },
   { id: "chemist", name: "화학 연구원", category: "science", icon: "⚗️",
     desc: "새로운 물질을 연구, 개발해 산업과 생활 전반에 활용될 기술을 만들어요.",
     skills: ["탐구심", "꼼꼼함", "논리적 사고"],
     subjects: ["화학", "수학"], majors: ["화학과"],
-    salary: "평균 4,200만원", outlook: "전망 유지" },
+    salary: "평균 4,200만원", outlook: "전망 유지",
+    aiImpact: { level: "low", text: "AI가 물질 조합을 예측해 실험 효율을 높여주지만, 실제 검증과 응용 연구는 사람의 몫이에요." } },
+  { id: "astronomer", name: "천문학자", category: "science", icon: "🔭",
+    desc: "별, 행성, 우주의 원리를 연구해 우주에 대한 이해를 넓히는 연구자예요.",
+    skills: ["탐구심", "수학", "끈기"],
+    subjects: ["물리학", "지구과학"], majors: ["천문우주학과", "물리학과"],
+    salary: "평균 4,300만원", outlook: "전망 유지",
+    aiImpact: { level: "low", text: "AI가 방대한 관측 데이터 분석을 도와주면서 연구자는 더 큰 질문에 집중할 수 있게 됐어요." } },
+  { id: "meteorologist", name: "기상연구원", category: "science", icon: "🌦️",
+    desc: "날씨와 기후 데이터를 분석해 기상을 예측하고 재해에 대비하도록 도와요.",
+    skills: ["탐구심", "분석력", "꼼꼼함"],
+    subjects: ["지구과학", "수학"], majors: ["대기과학과"],
+    salary: "평균 4,000만원", outlook: "전망 밝음",
+    aiImpact: { level: "medium", text: "AI가 기상 예측 모델의 정확도를 높여주지만, 이상 기후 등 예외 상황 판단은 사람의 전문성이 필요해요." } },
 
   // 사회·공공서비스
   { id: "social-worker", name: "사회복지사", category: "social", icon: "🤲",
     desc: "어려움을 겪는 사람들을 만나 상담하고 필요한 복지 서비스를 연결해줘요.",
     skills: ["공감 능력", "소통 능력", "정의감"],
     subjects: ["사회", "도덕"], majors: ["사회복지학과"],
-    salary: "평균 3,200만원", outlook: "전망 밝음" },
+    salary: "평균 3,200만원", outlook: "전망 밝음",
+    aiImpact: { level: "low", text: "AI가 행정 업무를 도와줄 수 있지만, 사람과 신뢰를 쌓고 마음을 돌보는 일은 사람만이 할 수 있어요." } },
   { id: "police-officer", name: "경찰관", category: "social", icon: "👮",
     desc: "시민의 안전을 지키고 범죄를 예방, 수사하는 공공 안전 전문가예요.",
     skills: ["정의감", "체력", "판단력"],
     subjects: ["사회", "체육"], majors: ["경찰행정학과"],
-    salary: "평균 4,500만원", outlook: "전망 유지" },
+    salary: "평균 4,500만원", outlook: "전망 유지",
+    aiImpact: { level: "low", text: "AI가 CCTV 분석 등 수사를 보조할 수 있지만, 현장 판단과 시민과의 신뢰 형성은 사람의 역할이에요." } },
   { id: "diplomat", name: "외교관", category: "social", icon: "🌐",
     desc: "국가를 대표해 다른 나라와 소통하며 국제 문제를 조율하는 일을 해요.",
     skills: ["외국어", "협상력", "논리적 사고"],
     subjects: ["영어", "사회"], majors: ["외교학과", "정치외교학과"],
-    salary: "평균 5,000만원", outlook: "전망 유지" },
+    salary: "평균 5,000만원", outlook: "전망 유지",
+    aiImpact: { level: "low", text: "AI가 번역이나 정보 정리를 도와주지만, 국가 간 신뢰를 쌓고 협상하는 일은 사람만이 할 수 있어요." } },
   { id: "firefighter", name: "소방관", category: "social", icon: "🚒",
     desc: "화재를 진압하고 인명을 구조하며 시민의 생명과 안전을 지켜요.",
     skills: ["체력", "용기", "협업 능력"],
     subjects: ["체육", "과학"], majors: ["소방행정학과"],
-    salary: "평균 4,400만원", outlook: "전망 밝음" },
+    salary: "평균 4,400만원", outlook: "전망 밝음",
+    aiImpact: { level: "low", text: "AI가 화재 감지나 경로 안내를 도와줄 수 있지만, 현장에서 인명을 구조하는 일은 사람이 직접 해야 해요." } },
+  { id: "public-officer", name: "공무원(행정직)", category: "social", icon: "🏛️",
+    desc: "국가와 지역 사회를 위한 행정 업무를 수행하며 공공 서비스를 제공해요.",
+    skills: ["책임감", "꼼꼼함", "소통 능력"],
+    subjects: ["사회", "국어"], majors: ["행정학과"],
+    salary: "평균 4,000만원", outlook: "전망 유지",
+    aiImpact: { level: "medium", text: "AI가 민원 응대와 서류 처리를 도와주면서, 공무원은 정책 기획과 시민 소통에 더 집중하게 돼요." } },
+  { id: "aid-worker", name: "국제구호활동가", category: "social", icon: "🌏",
+    desc: "재난이나 분쟁 지역에서 어려움에 처한 사람들을 돕는 구호 활동을 해요.",
+    skills: ["정의감", "외국어", "체력"],
+    subjects: ["영어", "사회"], majors: ["국제개발학과", "사회복지학과"],
+    salary: "평균 3,500만원(단체별 상이)", outlook: "전망 유지",
+    aiImpact: { level: "low", text: "AI가 물자 배분 계획을 도와줄 수 있지만, 위기 현장에서 사람을 직접 돕는 일은 대체할 수 없어요." } },
 ];
+
+const AI_IMPACT_LABEL = { low: "AI 영향 낮음", medium: "AI 영향 보통", high: "AI 영향 높음" };
 
 // ---------- Quiz data ----------
 // Each question has 4 options; each option carries a category key.
@@ -248,7 +363,7 @@ function renderFilterChips() {
 
 function makeChip(key, label) {
   const btn = document.createElement("button");
-  btn.className = "chip" + (activeCategory === key ? " active" : "");
+  btn.className = "chip" + (key !== "all" ? ` cat-${key}` : "") + (activeCategory === key ? " active" : "");
   btn.textContent = label;
   btn.dataset.key = key;
   btn.addEventListener("click", () => {
@@ -288,23 +403,11 @@ function makeCareerCard(career) {
   const card = document.createElement("div");
   card.className = "career-card";
   card.innerHTML = `
-    <div class="icon">${career.icon}</div>
-    <span class="category-tag">${catInfo.name}</span>
-    <h3>${career.name}</h3>
-    <p class="desc">${career.desc}</p>
-    <span class="more-link">자세히 보기 →</span>
-  `;
-  card.addEventListener("click", () => openModal(career));
-  return card;
-}
-
-function renderCareerMiniCard(career) {
-  const catInfo = getCategoryInfo(career.category);
-  const card = document.createElement("div");
-  card.className = "career-card";
-  card.innerHTML = `
-    <div class="icon">${career.icon}</div>
-    <span class="category-tag">${catInfo.name}</span>
+    <div class="icon-badge cat-${career.category}">${career.icon}</div>
+    <div class="card-tags">
+      <span class="category-tag cat-${career.category}">${catInfo.name}</span>
+      <span class="ai-badge ai-${career.aiImpact.level}">${AI_IMPACT_LABEL[career.aiImpact.level]}</span>
+    </div>
     <h3>${career.name}</h3>
     <p class="desc">${career.desc}</p>
     <span class="more-link">자세히 보기 →</span>
@@ -319,8 +422,8 @@ function openModal(career) {
   const catInfo = getCategoryInfo(career.category);
   const content = document.getElementById("modalContent");
   content.innerHTML = `
-    <div class="modal-icon">${career.icon}</div>
-    <span class="category-tag">${catInfo.name}</span>
+    <div class="modal-icon-badge cat-${career.category}">${career.icon}</div>
+    <span class="category-tag cat-${career.category}">${catInfo.name}</span>
     <h3>${career.name}</h3>
     <p class="modal-desc">${career.desc}</p>
 
@@ -347,6 +450,12 @@ function openModal(career) {
     <div class="modal-detail-block">
       <h4>전망</h4>
       <p>${career.outlook}</p>
+    </div>
+
+    <div class="modal-detail-block">
+      <h4>AI 시대, 이렇게 변화해요</h4>
+      <span class="ai-badge ai-${career.aiImpact.level}">${AI_IMPACT_LABEL[career.aiImpact.level]}</span>
+      <p class="ai-impact-text">${career.aiImpact.text}</p>
     </div>
   `;
   document.getElementById("modalOverlay").hidden = false;
@@ -415,7 +524,7 @@ function showQuizResult() {
   const recommended = CAREERS.filter((c) => c.category === topCatKey).slice(0, 4);
   const resultContainer = document.getElementById("resultCareers");
   resultContainer.innerHTML = "";
-  recommended.forEach((career) => resultContainer.appendChild(renderCareerMiniCard(career)));
+  recommended.forEach((career) => resultContainer.appendChild(makeCareerCard(career)));
 }
 
 // ---------- Init ----------
