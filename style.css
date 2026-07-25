@@ -1,29 +1,30 @@
 :root {
-  --bg: #eef5fc;
+  --bg: #eaf6ff;
   --surface: #ffffff;
   --text: #1e293b;
   --text-muted: #64748b;
-  --border: #dbeafe;
-  --primary: #3b82f6;
-  --primary-dark: #2563eb;
-  --primary-light: #dbeafe;
-  --accent: #38bdf8;
+  --border: #d3ecfb;
+  --primary: #0ea5e9;
+  --primary-dark: #0284c7;
+  --primary-light: #e0f2fe;
+  --accent: #22d3ee;
   --radius: 16px;
-  --shadow: 0 4px 16px rgba(59, 130, 246, 0.1);
-  --shadow-hover: 0 8px 24px rgba(59, 130, 246, 0.18);
+  --shadow: 0 4px 16px rgba(14, 165, 233, 0.12);
+  --shadow-hover: 0 8px 24px rgba(14, 165, 233, 0.2);
 }
 
-/* Per-category hue used by .category-tag / .icon-badge / .chip.active via var(--cat-h) */
-.cat-it { --cat-h: 196; }
-.cat-medical { --cat-h: 199; }
-.cat-art { --cat-h: 202; }
-.cat-edu { --cat-h: 206; }
-.cat-business { --cat-h: 209; }
-.cat-science { --cat-h: 212; }
-.cat-social { --cat-h: 215; }
-.cat-law { --cat-h: 218; }
-.cat-sports { --cat-h: 221; }
-.cat-culinary { --cat-h: 224; }
+/* Per-category hue + saturation used by .category-tag / .icon-badge / .chip.active / score bars.
+   Spans teal -> sky -> navy so fields feel distinct while staying in the blue family. */
+.cat-it { --cat-h: 205; --cat-s: 88%; }
+.cat-medical { --cat-h: 178; --cat-s: 55%; }
+.cat-art { --cat-h: 222; --cat-s: 78%; }
+.cat-edu { --cat-h: 198; --cat-s: 85%; }
+.cat-business { --cat-h: 214; --cat-s: 60%; }
+.cat-science { --cat-h: 188; --cat-s: 65%; }
+.cat-social { --cat-h: 206; --cat-s: 38%; }
+.cat-law { --cat-h: 223; --cat-s: 45%; }
+.cat-sports { --cat-h: 196; --cat-s: 95%; }
+.cat-culinary { --cat-h: 168; --cat-s: 55%; }
 
 * { box-sizing: border-box; }
 
@@ -77,13 +78,41 @@ nav { display: flex; gap: 20px; }
 
 /* Hero */
 .hero {
-  background: linear-gradient(135deg, #38bdf8 0%, #3b82f6 55%, #2563eb 100%);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #22d3ee 0%, #0ea5e9 50%, #0369a1 100%);
   color: white;
   padding: 72px 24px;
   text-align: center;
 }
 
-.hero-inner { max-width: 720px; margin: 0 auto; }
+.hero::before,
+.hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.hero::before {
+  width: 320px;
+  height: 320px;
+  background: #ffffff;
+  top: -120px;
+  left: -70px;
+}
+
+.hero::after {
+  width: 280px;
+  height: 280px;
+  background: #a5f3fc;
+  bottom: -100px;
+  right: -50px;
+}
+
+.hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
 
 .hero h1 {
   font-size: 2.1rem;
@@ -207,13 +236,13 @@ section h2 {
 }
 
 .chip:hover {
-  border-color: hsl(var(--cat-h, 217) 75% 60%);
-  color: hsl(var(--cat-h, 217) 75% 45%);
+  border-color: hsl(var(--cat-h, 199) var(--cat-s, 88%) 60%);
+  color: hsl(var(--cat-h, 199) var(--cat-s, 88%) 40%);
 }
 
 .chip.active {
-  background: hsl(var(--cat-h, 217) 75% 60%);
-  border-color: hsl(var(--cat-h, 217) 75% 60%);
+  background: hsl(var(--cat-h, 199) var(--cat-s, 88%) 55%);
+  border-color: hsl(var(--cat-h, 199) var(--cat-s, 88%) 55%);
   color: white;
 }
 
@@ -230,7 +259,7 @@ section h2 {
   padding: 22px;
   box-shadow: var(--shadow);
   cursor: pointer;
-  transition: transform 0.15s, box-shadow 0.15s;
+  transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
   border: 1px solid transparent;
   display: flex;
   flex-direction: column;
@@ -239,8 +268,8 @@ section h2 {
 
 .career-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--primary-light);
+  box-shadow: 0 10px 26px hsl(var(--cat-h, 199) var(--cat-s, 88%) 55% / 30%);
+  border-color: hsl(var(--cat-h, 199) var(--cat-s, 88%) 84%);
 }
 
 .icon-badge {
@@ -251,7 +280,11 @@ section h2 {
   align-items: center;
   justify-content: center;
   font-size: 1.6rem;
-  background: hsl(var(--cat-h, 217) 85% 93%);
+  background: linear-gradient(
+    135deg,
+    hsl(var(--cat-h, 199) var(--cat-s, 88%) 95%),
+    hsl(var(--cat-h, 199) var(--cat-s, 88%) 87%)
+  );
 }
 
 .career-card h3 { font-size: 1.08rem; }
@@ -268,8 +301,8 @@ section h2 {
   font-weight: 700;
   padding: 4px 10px;
   border-radius: 999px;
-  background: hsl(var(--cat-h, 217) 85% 93%);
-  color: hsl(var(--cat-h, 217) 65% 36%);
+  background: hsl(var(--cat-h, 199) var(--cat-s, 88%) 92%);
+  color: hsl(var(--cat-h, 199) var(--cat-s, 88%) 34%);
 }
 
 .ai-badge {
@@ -293,7 +326,7 @@ section h2 {
 .career-card .more-link {
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--primary-dark);
 }
 
 .empty-state {
@@ -341,7 +374,7 @@ section h2 {
 .quiz-step-label {
   font-size: 0.85rem;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--primary-dark);
   margin-bottom: 8px;
 }
 
@@ -379,6 +412,63 @@ section h2 {
   margin-bottom: 20px;
 }
 
+.score-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 24px 0;
+  text-align: left;
+}
+
+.score-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.score-bar-label {
+  width: 132px;
+  flex-shrink: 0;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.score-bar-track {
+  flex: 1;
+  height: 10px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: hsl(var(--cat-h, 199) var(--cat-s, 88%) 55%);
+  transition: width 0.4s ease;
+}
+
+.score-bar-value {
+  width: 20px;
+  text-align: right;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.result-careers-heading {
+  font-size: 1rem;
+  font-weight: 800;
+  text-align: left;
+  margin: 4px 0 12px;
+  color: var(--primary-dark);
+}
+
 .result-careers {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -393,7 +483,7 @@ section h2 {
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(30, 58, 95, 0.45);
+  background: rgba(8, 47, 73, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -441,7 +531,11 @@ section h2 {
   align-items: center;
   justify-content: center;
   font-size: 2.1rem;
-  background: hsl(var(--cat-h, 217) 85% 93%);
+  background: linear-gradient(
+    135deg,
+    hsl(var(--cat-h, 199) var(--cat-s, 88%) 95%),
+    hsl(var(--cat-h, 199) var(--cat-s, 88%) 87%)
+  );
   margin-bottom: 12px;
 }
 
@@ -499,4 +593,5 @@ section h2 {
   .hero h1 { font-size: 1.6rem; }
   .quiz-card { padding: 24px; }
   nav { gap: 12px; }
+  .score-bar-label { width: 96px; font-size: 0.75rem; }
 }

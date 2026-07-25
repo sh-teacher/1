@@ -345,15 +345,15 @@ const CAREERS = [
 const AI_IMPACT_LABEL = { low: "AI 영향 낮음", medium: "AI 영향 보통", high: "AI 영향 높음" };
 
 // ---------- Quiz data ----------
-// Each question has 4 options; each option carries a category key.
+// 10 questions x 4 options, each of the 10 categories appears in exactly 4 questions.
 const QUIZ_QUESTIONS = [
   {
     question: "여가 시간에 가장 끌리는 활동은?",
     options: [
-      { text: "친구에게 모르는 문제를 설명해준다", cat: "edu" },
       { text: "새로운 앱이나 게임을 직접 만들어본다", cat: "it" },
       { text: "다치거나 아픈 친구를 챙겨준다", cat: "medical" },
-      { text: "그림을 그리거나 영상을 편집한다", cat: "art" },
+      { text: "친구에게 모르는 문제를 설명해준다", cat: "edu" },
+      { text: "뉴스 속 사건이 공정하게 처리됐는지 따져본다", cat: "law" },
     ],
   },
   {
@@ -361,44 +361,80 @@ const QUIZ_QUESTIONS = [
     options: [
       { text: "생명과학, 보건", cat: "medical" },
       { text: "미술, 음악", cat: "art" },
-      { text: "국어, 사회처럼 설명하고 발표하는 과목", cat: "edu" },
-      { text: "수학, 정보", cat: "it" },
+      { text: "경제, 사회", cat: "business" },
+      { text: "체육", cat: "sports" },
     ],
   },
   {
     question: "팀 프로젝트에서 나는 주로?",
     options: [
-      { text: "일정과 역할을 계획하고 팀을 이끈다", cat: "business" },
-      { text: "자료를 분석하고 논리적으로 해결책을 찾는다", cat: "it" },
+      { text: "아이디어를 시각적으로 표현한다", cat: "art" },
       { text: "발표 자료를 만들고 팀원에게 설명한다", cat: "edu" },
-      { text: "팀원들의 컨디션과 어려움을 세심하게 챙긴다", cat: "medical" },
+      { text: "자료를 꼼꼼히 조사하고 근거를 찾는다", cat: "science" },
+      { text: "다과나 먹거리를 챙기며 팀 분위기를 살린다", cat: "culinary" },
     ],
   },
   {
     question: "가장 관심이 가는 뉴스 주제는?",
     options: [
-      { text: "우주 탐사, 환경, 과학 실험 소식", cat: "science" },
+      { text: "교육 정책, 입시 소식", cat: "edu" },
+      { text: "창업, 경제 트렌드 소식", cat: "business" },
       { text: "사회 문제, 복지 정책 소식", cat: "social" },
       { text: "AI, 신기술 관련 소식", cat: "it" },
-      { text: "창업, 경제 트렌드 소식", cat: "business" },
     ],
   },
   {
     question: "나의 강점에 가장 가까운 것은?",
     options: [
-      { text: "정의감이 강하고 다른 사람을 돕고 싶어한다", cat: "social" },
-      { text: "공감 능력이 뛰어나다는 말을 자주 듣는다", cat: "medical" },
-      { text: "궁금한 건 끝까지 파고드는 탐구심이 있다", cat: "science" },
       { text: "리더십이 있고 설득을 잘한다", cat: "business" },
+      { text: "궁금한 건 끝까지 파고드는 탐구심이 있다", cat: "science" },
+      { text: "원칙과 규칙을 꼼꼼하게 따지는 편이다", cat: "law" },
+      { text: "공감 능력이 뛰어나다는 말을 자주 듣는다", cat: "medical" },
     ],
   },
   {
     question: "미래에 일하고 싶은 환경은?",
     options: [
-      { text: "사람들과 활발히 소통하는 회사나 시장", cat: "business" },
       { text: "탐구하고 실험할 수 있는 연구소", cat: "science" },
-      { text: "감각을 살릴 수 있는 작업실이나 스튜디오", cat: "art" },
       { text: "사람들을 직접 돕는 현장(기관, 거리 등)", cat: "social" },
+      { text: "몸을 움직이고 경쟁하는 활동적인 현장", cat: "sports" },
+      { text: "감각을 살릴 수 있는 작업실이나 스튜디오", cat: "art" },
+    ],
+  },
+  {
+    question: "존경하거나 닮고 싶은 사람의 모습은?",
+    options: [
+      { text: "어려운 이웃을 위해 봉사하는 사람", cat: "social" },
+      { text: "억울한 사람의 편에서 옳고 그름을 가려주는 사람", cat: "law" },
+      { text: "정성으로 맛있는 음식을 만들어 사람들을 행복하게 하는 사람", cat: "culinary" },
+      { text: "지식을 알기 쉽게 전달해 사람들을 성장시키는 사람", cat: "edu" },
+    ],
+  },
+  {
+    question: "가장 뿌듯했던 순간은?",
+    options: [
+      { text: "다툼이나 갈등을 공정하게 중재했을 때", cat: "law" },
+      { text: "목표한 기록이나 성과를 달성했을 때", cat: "sports" },
+      { text: "만든 프로그램이나 코드가 제대로 작동했을 때", cat: "it" },
+      { text: "아이디어로 사람들을 설득해 일이 성사됐을 때", cat: "business" },
+    ],
+  },
+  {
+    question: "쉬는 날 가장 하고 싶은 일은?",
+    options: [
+      { text: "운동을 하거나 경기를 관람한다", cat: "sports" },
+      { text: "새로운 요리나 디저트를 만들어본다", cat: "culinary" },
+      { text: "아프거나 힘든 사람을 챙긴다", cat: "medical" },
+      { text: "다큐멘터리나 과학 실험 영상을 찾아본다", cat: "science" },
+    ],
+  },
+  {
+    question: "선호하는 문제 해결 방식은?",
+    options: [
+      { text: "직접 손으로 만들고 시도해보며 해결한다", cat: "culinary" },
+      { text: "논리적인 순서로 차근차근 해결한다", cat: "it" },
+      { text: "색다른 관점에서 창의적으로 접근한다", cat: "art" },
+      { text: "관련된 사람들의 이야기를 들어보고 함께 해결한다", cat: "social" },
     ],
   },
 ];
@@ -464,7 +500,7 @@ function renderCareerGrid() {
 function makeCareerCard(career) {
   const catInfo = getCategoryInfo(career.category);
   const card = document.createElement("div");
-  card.className = "career-card";
+  card.className = `career-card cat-${career.category}`;
   card.innerHTML = `
     <div class="icon-badge cat-${career.category}">${career.icon}</div>
     <div class="card-tags">
@@ -578,13 +614,35 @@ function showQuizResult() {
   document.getElementById("quizResult").hidden = false;
 
   const sortedCats = Object.entries(quizState.scores).sort((a, b) => b[1] - a[1]);
-  const topCatKey = sortedCats[0][0];
+  const [topCatKey, topScore] = sortedCats[0];
+  const [secondCatKey, secondScore] = sortedCats[1];
   const topCatInfo = getCategoryInfo(topCatKey);
+  const secondCatInfo = getCategoryInfo(secondCatKey);
 
-  document.getElementById("resultSummary").innerHTML =
-    `당신에게 가장 잘 어울리는 분야는 <strong>${topCatInfo.icon} ${topCatInfo.name}</strong> 이에요!<br>아래 추천 직업들을 살펴보세요.`;
+  let summaryHtml = `당신에게 가장 잘 어울리는 분야는 <strong>${topCatInfo.icon} ${topCatInfo.name}</strong> 이에요!`;
+  if (secondScore > 0 && topScore - secondScore <= 1) {
+    summaryHtml += `<br><strong>${secondCatInfo.icon} ${secondCatInfo.name}</strong> 분야에도 소질이 있어 보여요.`;
+  }
+  summaryHtml += `<br>아래에서 답변 분포와 추천 직업들을 살펴보세요.`;
+  document.getElementById("resultSummary").innerHTML = summaryHtml;
 
-  const recommended = CAREERS.filter((c) => c.category === topCatKey).slice(0, 4);
+  const maxScore = topScore || 1;
+  const scoreBars = document.getElementById("scoreBars");
+  scoreBars.innerHTML = sortedCats
+    .map(([key, score]) => {
+      const info = getCategoryInfo(key);
+      const pct = Math.round((score / maxScore) * 100);
+      return `
+        <div class="score-bar-row cat-${key}">
+          <span class="score-bar-label">${info.icon} ${info.name}</span>
+          <div class="score-bar-track"><div class="score-bar-fill" style="width:${pct}%"></div></div>
+          <span class="score-bar-value">${score}</span>
+        </div>
+      `;
+    })
+    .join("");
+
+  const recommended = CAREERS.filter((c) => c.category === topCatKey).slice(0, 6);
   const resultContainer = document.getElementById("resultCareers");
   resultContainer.innerHTML = "";
   recommended.forEach((career) => resultContainer.appendChild(makeCareerCard(career)));
